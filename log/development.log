@@ -1,0 +1,439 @@
+  [1m[35m (5.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateTasks (20161215092914)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "tasks" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161215092914"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddAttributesToTasks (20161215094136)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "tasks" ADD "content" varchar[0m
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "tasks" ADD "completed" boolean DEFAULT 0[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20161215094136"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-02-05 01:41:28.226759"], ["updated_at", "2021-02-05 01:41:28.226759"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210205014510)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210205014510"]]
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddAttributesToUsers (20210205014537)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "username" varchar[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "users" ADD "password" varchar[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210205014537"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserIdToSessions (20210205015423)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "sessions" ADD "user_id" integer[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateSessions (20210205015515)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (7.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210205015515"]]
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddUserIdToSessions (20210205015650)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "sessions" ADD "user_id" integer[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_sessions_on_user_id" ON "sessions" ("user_id")[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210205015650"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddTokenToSessions (20210205015737)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "sessions" ADD "token" varchar[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210205015737"]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserIdToTask (20210205021616)
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddUserIdToTask (20210205021616)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "tasks" ADD "user_id" integer[0m
+  [1m[36mprimary::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210205021616"]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2021-02-04 21:19:44 -0500
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomepageController#index as HTML
+  Rendering homepage/index.html within layouts/application
+  Rendered homepage/index.html within layouts/application (Duration: 0.9ms | Allocations: 224)
+Completed 200 OK in 364ms (Views: 357.8ms | ActiveRecord: 0.0ms | Allocations: 80081)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:19:44 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (3.6ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+Completed 200 OK in 39ms (Views: 0.4ms | ActiveRecord: 4.0ms | Allocations: 6911)
+
+
+Started POST "/users" for ::1 at 2021-02-04 21:20:08 -0500
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"username"=>"adil", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "adil"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("created_at", "updated_at", "username", "password") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:08.972290"], ["updated_at", "2021-02-05 02:20:08.972290"], ["username", "adil"], ["password", "adilsadik"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 25ms (Views: 0.2ms | ActiveRecord: 4.9ms | Allocations: 6610)
+
+
+Started POST "/sessions" for ::1 at 2021-02-04 21:20:08 -0500
+Processing by SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"adil", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "adil"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Create (1.0ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "updated_at", "user_id", "token") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:09.014577"], ["updated_at", "2021-02-05 02:20:09.014577"], ["user_id", 1], ["token", "o0WQxwqRI1wyJavfTfxZ0w"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 32ms (Views: 0.2ms | ActiveRecord: 3.4ms | Allocations: 7701)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:09 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.3ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "o0WQxwqRI1wyJavfTfxZ0w"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.2ms | ActiveRecord: 0.5ms | Allocations: 1071)
+
+
+Started GET "/my_tasks" for ::1 at 2021-02-04 21:20:09 -0500
+Processing by TasksController#index_by_current_user as JSON
+  [1m[36mSession Load (0.3ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "o0WQxwqRI1wyJavfTfxZ0w"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering tasks/index.jbuilder
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered tasks/index.jbuilder (Duration: 3.1ms | Allocations: 864)
+Completed 200 OK in 11ms (Views: 4.7ms | ActiveRecord: 1.3ms | Allocations: 3224)
+
+
+Started DELETE "/sessions" for ::1 at 2021-02-04 21:20:13 -0500
+Processing by SessionsController#destroy as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "o0WQxwqRI1wyJavfTfxZ0w"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Destroy (0.5ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 1]]
+  [1m[35m (8.8ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 12ms (Views: 0.3ms | ActiveRecord: 9.6ms | Allocations: 775)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:13 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "o0WQxwqRI1wyJavfTfxZ0w"], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 520)
+
+
+Started POST "/sessions" for ::1 at 2021-02-04 21:20:18 -0500
+Processing by SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"adil", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "adil"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Create (0.7ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "updated_at", "user_id", "token") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:18.599790"], ["updated_at", "2021-02-05 02:20:18.599790"], ["user_id", 1], ["token", "eVMrjaPzh0DkchnJrt_44w"]]
+  [1m[35m (9.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 14ms (Views: 0.3ms | ActiveRecord: 10.0ms | Allocations: 1236)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:18 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "eVMrjaPzh0DkchnJrt_44w"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 761)
+
+
+Started GET "/my_tasks" for ::1 at 2021-02-04 21:20:18 -0500
+Processing by TasksController#index_by_current_user as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "eVMrjaPzh0DkchnJrt_44w"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering tasks/index.jbuilder
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered tasks/index.jbuilder (Duration: 0.7ms | Allocations: 237)
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 0.5ms | Allocations: 1153)
+
+
+Started DELETE "/sessions" for ::1 at 2021-02-04 21:20:20 -0500
+Processing by SessionsController#destroy as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "eVMrjaPzh0DkchnJrt_44w"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Destroy (0.4ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 2]]
+  [1m[35m (8.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 11ms (Views: 0.3ms | ActiveRecord: 9.1ms | Allocations: 775)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:20 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "eVMrjaPzh0DkchnJrt_44w"], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 508)
+
+
+Started POST "/sessions" for ::1 at 2021-02-04 21:20:23 -0500
+Processing by SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"adil", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "adil"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Create (0.9ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "updated_at", "user_id", "token") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:23.692935"], ["updated_at", "2021-02-05 02:20:23.692935"], ["user_id", 1], ["token", "eQ6coAJTybzphQLSlS6X2g"]]
+  [1m[35m (9.1ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 10.3ms | Allocations: 1229)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:23 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "eQ6coAJTybzphQLSlS6X2g"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 751)
+
+
+Started GET "/my_tasks" for ::1 at 2021-02-04 21:20:23 -0500
+Processing by TasksController#index_by_current_user as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "eQ6coAJTybzphQLSlS6X2g"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering tasks/index.jbuilder
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered tasks/index.jbuilder (Duration: 1.3ms | Allocations: 237)
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 0.6ms | Allocations: 1164)
+
+
+Started DELETE "/sessions" for ::1 at 2021-02-04 21:20:24 -0500
+Processing by SessionsController#destroy as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "eQ6coAJTybzphQLSlS6X2g"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Destroy (0.5ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 3]]
+  [1m[35m (9.8ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 13ms (Views: 0.5ms | ActiveRecord: 10.5ms | Allocations: 746)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:24 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "eQ6coAJTybzphQLSlS6X2g"], ["LIMIT", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 522)
+
+
+Started POST "/sessions" for ::1 at 2021-02-04 21:20:28 -0500
+Processing by SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"adil", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "adil"], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 797)
+
+
+Started POST "/sessions" for ::1 at 2021-02-04 21:20:33 -0500
+Processing by SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"adil", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "adil"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Create (2.8ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "updated_at", "user_id", "token") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:33.056615"], ["updated_at", "2021-02-05 02:20:33.056615"], ["user_id", 1], ["token", "3ija5DZe1mpLQqpLMFrowg"]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 4.6ms | Allocations: 1219)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:33 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.3ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 4ms (Views: 0.3ms | ActiveRecord: 0.5ms | Allocations: 763)
+
+
+Started GET "/my_tasks" for ::1 at 2021-02-04 21:20:33 -0500
+Processing by TasksController#index_by_current_user as JSON
+  [1m[36mSession Load (0.1ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering tasks/index.jbuilder
+  [1m[36mTask Load (0.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered tasks/index.jbuilder (Duration: 0.8ms | Allocations: 236)
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 1161)
+
+
+Started POST "/tasks" for ::1 at 2021-02-04 21:20:35 -0500
+Processing by TasksController#create as JSON
+  Parameters: {"task"=>{"content"=>"asda"}}
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.5ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "content", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:35.386300"], ["updated_at", "2021-02-05 02:20:35.386300"], ["content", "asda"], ["user_id", 1]]
+  [1m[35m (9.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/create.jbuilder
+  Rendered tasks/create.jbuilder (Duration: 0.8ms | Allocations: 171)
+Completed 200 OK in 23ms (Views: 2.8ms | ActiveRecord: 11.0ms | Allocations: 5395)
+
+
+Started POST "/tasks" for ::1 at 2021-02-04 21:20:36 -0500
+Processing by TasksController#create as JSON
+  Parameters: {"task"=>{"content"=>"adsa"}}
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "content", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:36.080539"], ["updated_at", "2021-02-05 02:20:36.080539"], ["content", "adsa"], ["user_id", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/create.jbuilder
+  Rendered tasks/create.jbuilder (Duration: 0.4ms | Allocations: 99)
+Completed 200 OK in 6ms (Views: 1.1ms | ActiveRecord: 2.0ms | Allocations: 1664)
+
+
+Started POST "/tasks" for ::1 at 2021-02-04 21:20:36 -0500
+Processing by TasksController#create as JSON
+  Parameters: {"task"=>{"content"=>"adsa"}}
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.6ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "content", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:36.623063"], ["updated_at", "2021-02-05 02:20:36.623063"], ["content", "adsa"], ["user_id", 1]]
+  [1m[35m (2.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/create.jbuilder
+  Rendered tasks/create.jbuilder (Duration: 0.3ms | Allocations: 99)
+Completed 200 OK in 11ms (Views: 3.7ms | ActiveRecord: 3.5ms | Allocations: 1665)
+
+
+Started POST "/tasks" for ::1 at 2021-02-04 21:20:37 -0500
+Processing by TasksController#create as JSON
+  Parameters: {"task"=>{"content"=>"q3434"}}
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.4ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "content", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:37.572652"], ["updated_at", "2021-02-05 02:20:37.572652"], ["content", "q3434"], ["user_id", 1]]
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/create.jbuilder
+  Rendered tasks/create.jbuilder (Duration: 0.2ms | Allocations: 99)
+Completed 200 OK in 6ms (Views: 0.8ms | ActiveRecord: 1.8ms | Allocations: 1663)
+
+
+Started POST "/tasks" for ::1 at 2021-02-04 21:20:38 -0500
+Processing by TasksController#create as JSON
+  Parameters: {"task"=>{"content"=>"34234"}}
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mTask Create (0.8ms)[0m  [1m[32mINSERT INTO "tasks" ("created_at", "updated_at", "content", "user_id") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:38.351179"], ["updated_at", "2021-02-05 02:20:38.351179"], ["content", "34234"], ["user_id", 1]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/create.jbuilder
+  Rendered tasks/create.jbuilder (Duration: 0.2ms | Allocations: 99)
+Completed 200 OK in 8ms (Views: 0.8ms | ActiveRecord: 2.7ms | Allocations: 1659)
+
+
+Started DELETE "/sessions" for ::1 at 2021-02-04 21:20:39 -0500
+Processing by SessionsController#destroy as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Destroy (0.6ms)[0m  [1m[31mDELETE FROM "sessions" WHERE "sessions"."id" = ?[0m  [["id", 4]]
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 2.0ms | Allocations: 759)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:39 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "3ija5DZe1mpLQqpLMFrowg"], ["LIMIT", 1]]
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 518)
+
+
+Started POST "/sessions" for ::1 at 2021-02-04 21:20:42 -0500
+Processing by SessionsController#create as JSON
+  Parameters: {"user"=>{"username"=>"adil", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "adil"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mSession Create (0.7ms)[0m  [1m[32mINSERT INTO "sessions" ("created_at", "updated_at", "user_id", "token") VALUES (?, ?, ?, ?)[0m  [["created_at", "2021-02-05 02:20:42.297424"], ["updated_at", "2021-02-05 02:20:42.297424"], ["user_id", 1], ["token", "6S_T4VNembNMo2JjMCuIhw"]]
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 1221)
+
+
+Started GET "/authenticated" for ::1 at 2021-02-04 21:20:42 -0500
+Processing by SessionsController#authenticated as JSON
+  [1m[36mSession Load (0.2ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "6S_T4VNembNMo2JjMCuIhw"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 773)
+
+
+Started GET "/my_tasks" for ::1 at 2021-02-04 21:20:42 -0500
+Processing by TasksController#index_by_current_user as JSON
+  [1m[36mSession Load (0.3ms)[0m  [1m[34mSELECT "sessions".* FROM "sessions" WHERE "sessions"."token" = ? LIMIT ?[0m  [["token", "6S_T4VNembNMo2JjMCuIhw"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering tasks/index.jbuilder
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered tasks/index.jbuilder (Duration: 2.4ms | Allocations: 743)
+Completed 200 OK in 6ms (Views: 3.2ms | ActiveRecord: 0.6ms | Allocations: 1664)
+
+
+Started PUT "/tasks/1/mark_complete" for ::1 at 2021-02-04 21:20:44 -0500
+Processing by TasksController#mark_complete as JSON
+  Parameters: {"id"=>"1"}
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Update (0.6ms)[0m  [1m[33mUPDATE "tasks" SET "completed" = ?, "updated_at" = ? WHERE "tasks"."id" = ?[0m  [["completed", 1], ["updated_at", "2021-02-05 02:20:44.414880"], ["id", 1]]
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/update.jbuilder
+  Rendered tasks/update.jbuilder (Duration: 1.0ms | Allocations: 190)
+Completed 200 OK in 11ms (Views: 2.7ms | ActiveRecord: 2.9ms | Allocations: 1967)
+
+
+Started PUT "/tasks/2/mark_complete" for ::1 at 2021-02-04 21:20:45 -0500
+Processing by TasksController#mark_complete as JSON
+  Parameters: {"id"=>"2"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Update (0.4ms)[0m  [1m[33mUPDATE "tasks" SET "completed" = ?, "updated_at" = ? WHERE "tasks"."id" = ?[0m  [["completed", 1], ["updated_at", "2021-02-05 02:20:45.096613"], ["id", 2]]
+  [1m[35m (8.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/update.jbuilder
+  Rendered tasks/update.jbuilder (Duration: 0.4ms | Allocations: 121)
+Completed 200 OK in 13ms (Views: 1.2ms | ActiveRecord: 9.2ms | Allocations: 1405)
+
+
+Started PUT "/tasks/3/mark_complete" for ::1 at 2021-02-04 21:20:45 -0500
+Processing by TasksController#mark_complete as JSON
+  Parameters: {"id"=>"3"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Update (0.4ms)[0m  [1m[33mUPDATE "tasks" SET "completed" = ?, "updated_at" = ? WHERE "tasks"."id" = ?[0m  [["completed", 1], ["updated_at", "2021-02-05 02:20:45.697509"], ["id", 3]]
+  [1m[35m (9.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/update.jbuilder
+  Rendered tasks/update.jbuilder (Duration: 0.7ms | Allocations: 408)
+Completed 200 OK in 15ms (Views: 2.2ms | ActiveRecord: 9.9ms | Allocations: 2098)
+
+
+Started PUT "/tasks/5/mark_complete" for ::1 at 2021-02-04 21:20:47 -0500
+Processing by TasksController#mark_complete as JSON
+  Parameters: {"id"=>"5"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Update (0.7ms)[0m  [1m[33mUPDATE "tasks" SET "completed" = ?, "updated_at" = ? WHERE "tasks"."id" = ?[0m  [["completed", 1], ["updated_at", "2021-02-05 02:20:47.148663"], ["id", 5]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/update.jbuilder
+  Rendered tasks/update.jbuilder (Duration: 0.4ms | Allocations: 121)
+Completed 200 OK in 16ms (Views: 1.4ms | ActiveRecord: 10.1ms | Allocations: 1407)
+
+
+Started PUT "/tasks/4/mark_complete" for ::1 at 2021-02-04 21:20:47 -0500
+Processing by TasksController#mark_complete as JSON
+  Parameters: {"id"=>"4"}
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTask Update (0.4ms)[0m  [1m[33mUPDATE "tasks" SET "completed" = ?, "updated_at" = ? WHERE "tasks"."id" = ?[0m  [["completed", 1], ["updated_at", "2021-02-05 02:20:47.720499"], ["id", 4]]
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering tasks/update.jbuilder
+  Rendered tasks/update.jbuilder (Duration: 0.4ms | Allocations: 121)
+Completed 200 OK in 7ms (Views: 1.7ms | ActiveRecord: 2.2ms | Allocations: 1408)
+
+
